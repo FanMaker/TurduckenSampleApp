@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "fanmaker",
+      "kind" : "localSourceControl",
+      "location" : "/Users/erik/Work/fanmaker/FanMaker",
+      "state" : {
+        "branch" : "main",
+        "revision" : "9fd6059a2e54705edba5b6aee55f50116aecab19"
+      }
+    }
+  ],
+  "version" : 2
+}

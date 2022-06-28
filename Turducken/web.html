@@ -1,0 +1,133 @@
+<html>
+  <head>
+    <title>FanMaker Test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script   src="https://code.jquery.com/jquery-3.6.0.min.js"   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="   crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <style>
+        #map {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
+  </head>
+  
+  <body>
+    <script>
+      $(document).ready(() => {
+        let params = location.search
+        let token = params.split('=')[1]
+        
+        if (token && token !== '') {
+          $('#login-ui').hide()
+          $('#logged-username').text(`Logged in as ${token}`)
+        } else {
+          $('#logout-ui').hide()
+        }
+        
+        $('#login').on('click', () => {
+          let username = $('#username').val().trim()
+          if (username !== '') {
+            $('#login-ui').hide()
+            $('#logout-ui').show()
+            $('#logged-username').text(`Logged in as ${username}`)
+            
+            storeSessionToken(username)
+          }
+        })
+        
+        $('#logout').on('click', () => {
+          $('#logout-ui').hide()
+          $('#login-ui').show()
+          
+          storeSessionToken('')
+        })
+
+        $('#update-location').on('click', updateLocation)
+
+        requestLocationAuthorization()
+      })
+            
+      function storeSessionToken(token) {
+        webkit.messageHandlers.fanmaker.postMessage({ setToken: token })
+      }
+
+      function requestLocationAuthorization() {
+        webkit.messageHandlers.fanmaker.postMessage({ requestLocationAuthorization: 'requestLocationAuthorization' }) 
+      }
+
+      function updateLocation() {
+        webkit.messageHandlers.fanmaker.postMessage({ updateLocation: 'updateLocation' })
+      }
+
+      function receiveLocation(coords) {
+        if (window.marker) {
+            window.parker.setPosition(coords)
+        } else {
+            window.marker = new google.maps.Marker({
+                position: coords,
+                map: window.map,
+            });
+            window.map.setCenter(coords)
+            window.map.setZoom(16)
+        }
+      }
+    </script>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1>FanMaker</h1>
+          <span id="token" />
+        </div>
+      </div>
+      <div id="login-ui" class="row">
+        <div class="col-md-6">
+          <br />
+          <input id="username" type="text" class="form-control" placeholder="username" />
+        </div>
+        <div class="col-md-6">
+          <br />
+          <button id="login" class="form-control btn btn-primary">Login</button>
+        </div>
+       </div>
+      <div id="logout-ui" class="row">
+        <div class="col-md-6">
+          <p id="logged-username" />
+        </div>
+        <div class="col-md-6">
+          <br />
+          <button id="logout" class="form-control btn btn-primary">Logout</button>
+        </div>
+
+        <div class="col-md-6">
+            <br />
+            <button id="update-location" class="form-control btn btn-primary">Update Location</button>
+        </div>
+        <div class="col-md-6">
+            <div id="map" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCY4xyB1-UjuRVxVFyxeof3GWCT0JiiRO4&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+    <script>
+      // Initialize and add the map
+      function initMap() {
+        // The location of Uluru
+        window.map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 1,
+          center: {
+            lat: 37.78,
+            lng: -122.4 
+          },
+        });
+      }
+    </script>
+  </body>
+</html>
