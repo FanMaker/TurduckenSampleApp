@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		030C8CB028B52F8500D83F6E /* RegionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030C8CAF28B52F8500D83F6E /* RegionRow.swift */; };
 		034040EC26557D4000CB1C55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034040EB26557D4000CB1C55 /* AppDelegate.swift */; };
-		039D1225286109830080B2DC /* RegionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039D1224286109830080B2DC /* RegionRow.swift */; };
 		039D122728610FAF0080B2DC /* RegionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039D122628610FAF0080B2DC /* RegionList.swift */; };
 		039D1229286114A80080B2DC /* BeaconRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039D1228286114A80080B2DC /* BeaconRow.swift */; };
 		039D122B286117BC0080B2DC /* BeaconList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039D122A286117BC0080B2DC /* BeaconList.swift */; };
@@ -22,8 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		030C8CAF28B52F8500D83F6E /* RegionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionRow.swift; sourceTree = "<group>"; };
 		034040EB26557D4000CB1C55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		039D1224286109830080B2DC /* RegionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegionRow.swift; path = ../../RegionRow.swift; sourceTree = "<group>"; };
 		039D122628610FAF0080B2DC /* RegionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionList.swift; sourceTree = "<group>"; };
 		039D1228286114A80080B2DC /* BeaconRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconRow.swift; sourceTree = "<group>"; };
 		039D122A286117BC0080B2DC /* BeaconList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconList.swift; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 				03D08B42264EF13D0002CE16 /* Info.plist */,
 				03D08B3F264EF13D0002CE16 /* Preview Content */,
 				03C6E315265423C100040097 /* web.html */,
-				039D1224286109830080B2DC /* RegionRow.swift */,
+				030C8CAF28B52F8500D83F6E /* RegionRow.swift */,
 				039D122628610FAF0080B2DC /* RegionList.swift */,
 				039D1228286114A80080B2DC /* BeaconRow.swift */,
 				039D122A286117BC0080B2DC /* BeaconList.swift */,
@@ -172,9 +172,9 @@
 				034040EC26557D4000CB1C55 /* AppDelegate.swift in Sources */,
 				039D1229286114A80080B2DC /* BeaconRow.swift in Sources */,
 				03D08B3A264EF13C0002CE16 /* TurduckenApp.swift in Sources */,
-				039D1225286109830080B2DC /* RegionRow.swift in Sources */,
 				039D122F286121EC0080B2DC /* FanMakerViewModel.swift in Sources */,
 				039D122728610FAF0080B2DC /* RegionList.swift in Sources */,
+				030C8CB028B52F8500D83F6E /* RegionRow.swift in Sources */,
 				039D122D286119DC0080B2DC /* BeaconActions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
