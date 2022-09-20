@@ -37,7 +37,9 @@ struct Region : Identifiable {
     func beacons() -> [Beacon] {
         var minors : Set<Int> = []
         for action in actions {
-            minors.insert(action.minor)
+            if (major == action.major) {
+                minors.insert(action.minor)
+            }
         }
         
         return minors.map({ Beacon(id: $0, region: self)})
@@ -59,11 +61,24 @@ class FanMakerViewModel : NSObject, ObservableObject, FanMakerSDKBeaconsManagerD
     }
     
     func updateRegions() {
-        beaconsManager.fetchBeaconRegions()
+        beaconsManager.requestAuthorization()
     }
     
     func beaconsManager(_ manager: FanMakerSDKBeaconsManager, didChangeAuthorization status: FanMakerSDKBeaconsAuthorizationStatus) {
-        
+        switch(status) {
+            case .notDetermined:
+                NSLog("FANMAKER ERROR: Authorization Not determined")
+            case .restricted:
+                NSLog("FANMAKER ERROR: Authorization Restricted")
+            case .denied:
+                NSLog("FANMAKER ERROR: Authorization Denied")
+            case .authorizedAlways:
+                NSLog("FANMAKER SUCCESS: Authorization Always")
+                beaconsManager.fetchBeaconRegions()
+            case .authorizedWhenInUse:
+                NSLog("FANMAKER SUCCESS: Authorization When in use")
+                beaconsManager.fetchBeaconRegions()
+            }
     }
     
     func beaconsManager(_ manager: FanMakerSDKBeaconsManager, didReceiveBeaconRegions regions: [FanMakerSDKBeaconRegion]) {
@@ -123,6 +138,13 @@ class FanMakerViewModel : NSObject, ObservableObject, FanMakerSDKBeaconsManagerD
     }
     
     func beaconsManager(_ manager: FanMakerSDKBeaconsManager, didFailWithError error: FanMakerSDKBeaconsError) {
-        
+        switch(error) {
+            case .userSessionNotFound:
+                NSLog("FANMAKER ERROR: User session not found")
+            case .serverError:
+                NSLog("FANMAKER ERROR: Server error")
+            case .unknown:
+                NSLog("FANMAKER ERROR: Unknown")
+            }
     }
 }
