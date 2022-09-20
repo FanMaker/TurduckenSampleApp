@@ -21,7 +21,7 @@ struct BeaconList: View {
             List(beacons) { beacon in
                 NavigationLink {
                     BeaconActions(actions: region.actions.filter({ action in
-                        action.minor == beacon.id
+                        action.major == region.major && action.minor == beacon.id
                     }))
                 } label: {
                     BeaconRow(beacon: beacon)

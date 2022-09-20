@@ -17,7 +17,6 @@ struct RegionRow : View {
             Text(data.uuid).bold().lineLimit(1).minimumScaleFactor(0.5)
             HStack {
                 Text("Major: \(data.major)")
-                Text("Minor: \(data.id)")
             }
         }
     }
