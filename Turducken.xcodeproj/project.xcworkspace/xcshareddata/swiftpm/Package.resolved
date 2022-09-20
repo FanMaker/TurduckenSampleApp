@@ -1,12 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "fanmaker",
-      "kind" : "localSourceControl",
-      "location" : "/Users/erik/Work/fanmaker/FanMaker",
+      "identity" : "turducken",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/FanMaker/turducken.git",
       "state" : {
         "branch" : "main",
-        "revision" : "9fd6059a2e54705edba5b6aee55f50116aecab19"
+        "revision" : "2c0641dd988f75f99f3b77d5c3d71116eeb935f7"
       }
     }
   ],
