@@ -23,7 +23,7 @@ extension BeaconAction {
         self.major = fmAction.major
         self.minor = fmAction.minor
         self.seenAt = fmAction.seenAt
-        self.posted = fmAction.posted
+        self.posted = true
     }
 }
 
@@ -119,7 +119,7 @@ class FanMakerViewModel : NSObject, ObservableObject, FanMakerSDKBeaconsManagerD
         }
     }
     
-    func beaconsManager(_ manager: FanMakerSDKBeaconsManager, didUpdateBeaconRangeActionsQueue queue: [FanMakerSDKBeaconRangeAction]) {
+    func beaconsManager(_ manager: FanMakerSDKBeaconsManager, didUpdateBeaconRangeActionsHistory queue: [FanMakerSDKBeaconRangeAction]) {
 
         NSLog("the queue was updated to \(queue.count) items")
         DispatchQueue.main.async {
@@ -135,6 +135,10 @@ class FanMakerViewModel : NSObject, ObservableObject, FanMakerSDKBeaconsManagerD
                 return newRegion
             }
         }
+    }
+    
+    func beaconsManager(_ manager: FanMakerSDKBeaconsManager, didUpdateBeaconRangeActionsSendList queue: [FanMakerSDKBeaconRangeAction]) {
+        
     }
     
     func beaconsManager(_ manager: FanMakerSDKBeaconsManager, didFailWithError error: FanMakerSDKBeaconsError) {
