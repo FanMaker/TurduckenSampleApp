@@ -11,7 +11,7 @@ import CoreLocation
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        FanMakerSDK.initialize(apiKey: "bb460452f81404b2cdf8d5691714115bb1b25905d337cc4ea50c89f327d7209d")
+        FanMakerSDK.initialize(apiKey: "")
         
         return true
     }
