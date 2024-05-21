@@ -3,12 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		030C8CB028B52F8500D83F6E /* RegionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030C8CAF28B52F8500D83F6E /* RegionRow.swift */; };
-		030C8CB328B5449200D83F6E /* FanMaker in Frameworks */ = {isa = PBXBuildFile; productRef = 030C8CB228B5449200D83F6E /* FanMaker */; };
 		034040EC26557D4000CB1C55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034040EB26557D4000CB1C55 /* AppDelegate.swift */; };
 		039D122728610FAF0080B2DC /* RegionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039D122628610FAF0080B2DC /* RegionList.swift */; };
 		039D1229286114A80080B2DC /* BeaconRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039D1228286114A80080B2DC /* BeaconRow.swift */; };
@@ -19,6 +18,9 @@
 		03D08B3A264EF13C0002CE16 /* TurduckenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D08B39264EF13C0002CE16 /* TurduckenApp.swift */; };
 		03D08B3E264EF13D0002CE16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03D08B3D264EF13D0002CE16 /* Assets.xcassets */; };
 		03D08B41264EF13D0002CE16 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03D08B40264EF13D0002CE16 /* Preview Assets.xcassets */; };
+		CD15F79C2BE4466E0094797C /* FanMaker in Frameworks */ = {isa = PBXBuildFile; productRef = CD15F79B2BE4466E0094797C /* FanMaker */; };
+		CD3CFDC32BE2E04500AF65FC /* FanMaker in Frameworks */ = {isa = PBXBuildFile; productRef = CD3CFDC22BE2E04500AF65FC /* FanMaker */; };
+		CD9360F82BE046300085A1E0 /* FanMaker in Frameworks */ = {isa = PBXBuildFile; productRef = CD9360F72BE046300085A1E0 /* FanMaker */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +44,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				030C8CB328B5449200D83F6E /* FanMaker in Frameworks */,
+				CD15F79C2BE4466E0094797C /* FanMaker in Frameworks */,
+				CD9360F82BE046300085A1E0 /* FanMaker in Frameworks */,
+				CD3CFDC32BE2E04500AF65FC /* FanMaker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,8 +56,10 @@
 		03D08B2D264EF13C0002CE16 = {
 			isa = PBXGroup;
 			children = (
+				CD3EDB412AE82AEB007B30CA /* Packages */,
 				03D08B38264EF13C0002CE16 /* Turducken */,
 				03D08B37264EF13C0002CE16 /* Products */,
+				CD3EDB432AE82CE9007B30CA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,6 +98,20 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		CD3EDB412AE82AEB007B30CA /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		CD3EDB432AE82CE9007B30CA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -109,7 +129,9 @@
 			);
 			name = Turducken;
 			packageProductDependencies = (
-				030C8CB228B5449200D83F6E /* FanMaker */,
+				CD9360F72BE046300085A1E0 /* FanMaker */,
+				CD3CFDC22BE2E04500AF65FC /* FanMaker */,
+				CD15F79B2BE4466E0094797C /* FanMaker */,
 			);
 			productName = Turducken;
 			productReference = 03D08B36264EF13C0002CE16 /* Turducken.app */;
@@ -139,7 +161,7 @@
 			);
 			mainGroup = 03D08B2D264EF13C0002CE16;
 			packageReferences = (
-				030C8CB128B5449200D83F6E /* XCRemoteSwiftPackageReference "turducken" */,
+				CD15F79A2BE4466E0094797C /* XCLocalSwiftPackageReference "../Turducken" */,
 			);
 			productRefGroup = 03D08B37264EF13C0002CE16 /* Products */;
 			projectDirPath = "";
@@ -365,21 +387,24 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		030C8CB128B5449200D83F6E /* XCRemoteSwiftPackageReference "turducken" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/FanMaker/turducken.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		CD15F79A2BE4466E0094797C /* XCLocalSwiftPackageReference "../Turducken" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Turducken;
 		};
-/* End XCRemoteSwiftPackageReference section */
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		030C8CB228B5449200D83F6E /* FanMaker */ = {
+		CD15F79B2BE4466E0094797C /* FanMaker */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 030C8CB128B5449200D83F6E /* XCRemoteSwiftPackageReference "turducken" */;
+			productName = FanMaker;
+		};
+		CD3CFDC22BE2E04500AF65FC /* FanMaker */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FanMaker;
+		};
+		CD9360F72BE046300085A1E0 /* FanMaker */ = {
+			isa = XCSwiftPackageProductDependency;
 			productName = FanMaker;
 		};
 /* End XCSwiftPackageProductDependency section */
