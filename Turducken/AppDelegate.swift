@@ -10,9 +10,17 @@ import FanMaker
 import CoreLocation
 
 class AppDelegate: NSObject, UIApplicationDelegate {
+    static var fanmakerSDK1: FanMakerSDK!
+    static var fanmakerSDK2: FanMakerSDK!
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        FanMakerSDK.initialize(apiKey: "")
-        
+        let fanmakerSDK1 = FanMakerSDK()
+        fanmakerSDK1.initialize(apiKey: "")
+        AppDelegate.fanmakerSDK1 = fanmakerSDK1
+
+        let fanmakerSDK2 = FanMakerSDK()
+        fanmakerSDK2.initialize(apiKey: "")
+        AppDelegate.fanmakerSDK2 = fanmakerSDK2
+
         return true
     }
 }

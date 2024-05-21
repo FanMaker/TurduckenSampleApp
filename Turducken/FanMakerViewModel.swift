@@ -41,29 +41,35 @@ struct Region : Identifiable {
                 minors.insert(action.minor)
             }
         }
-        
+
         return minors.map({ Beacon(id: $0, region: self)})
     }
 }
 
 class FanMakerViewModel : NSObject, ObservableObject, FanMakerSDKBeaconsManagerDelegate {
-    
-    @Published var beaconRegions : [Region]
-    
-    private let beaconsManager : FanMakerSDKBeaconsManager
-    
+
+    @Published var beaconRegions1 : [Region]
+    @Published var beaconRegions2 : [Region]
+
+    private let beaconsManager1 : FanMakerSDKBeaconsManager
+    // private let beaconsManager2 : FanMakerSDKBeaconsManager
+
     override init() {
-        beaconsManager = FanMakerSDKBeaconsManager()
-        beaconRegions = []
-        
+        beaconsManager1 = FanMakerSDKBeaconsManager(sdk: AppDelegate.fanmakerSDK1)
+        // beaconsManager2 = FanMakerSDKBeaconsManager(sdk: AppDelegate.fanmakerSDK2)
+        beaconRegions1 = []
+        beaconRegions2 = []
+
         super.init()
-        beaconsManager.delegate = self
+        beaconsManager1.delegate = self
+        // beaconsManager2.delegate = self
     }
-    
+
     func updateRegions() {
-        beaconsManager.requestAuthorization()
+        beaconsManager1.requestAuthorization()
+        // beaconsManager2.requestAuthorization()
     }
-    
+
     func beaconsManager(_ manager: FanMakerSDKBeaconsManager, didChangeAuthorization status: FanMakerSDKBeaconsAuthorizationStatus) {
         switch(status) {
             case .notDetermined:
@@ -74,73 +80,87 @@ class FanMakerViewModel : NSObject, ObservableObject, FanMakerSDKBeaconsManagerD
                 NSLog("FANMAKER ERROR: Authorization Denied")
             case .authorizedAlways:
                 NSLog("FANMAKER SUCCESS: Authorization Always")
-                beaconsManager.fetchBeaconRegions()
+                manager.fetchBeaconRegions()
             case .authorizedWhenInUse:
                 NSLog("FANMAKER SUCCESS: Authorization When in use")
-                beaconsManager.fetchBeaconRegions()
+                manager.fetchBeaconRegions()
             }
     }
-    
+
+    func selectedBeaconRegionArray(_ manager: FanMakerSDKBeaconsManager) -> [Region] {
+        return beaconRegions1
+        // return manager == beaconsManager1 ? beaconRegions1 : beaconRegions2
+    }
+
+    func updateSelectedBeaconRegionArray(_ manager: FanMakerSDKBeaconsManager, regions: [Region]) {
+        beaconRegions1 = regions
+        // if manager == beaconsManager1 {
+        //     beaconRegions1 = regions
+        // } else {
+        //     beaconRegions2 = regions
+        // }
+    }
+
     func beaconsManager(_ manager: FanMakerSDKBeaconsManager, didReceiveBeaconRegions regions: [FanMakerSDKBeaconRegion]) {
-        
+
         manager.startScanning(regions)
         DispatchQueue.main.async {
-            self.beaconRegions = regions.map {
+            self.updateSelectedBeaconRegionArray(manager, regions: self.selectedBeaconRegionArray(manager).map {
                 Region(id: $0.id, uuid: $0.uuid, major: Int($0.major) ?? 0)
-            }
+            })
         }
     }
-    
+
     func beaconsManager(_ manager: FanMakerSDKBeaconsManager, didEnterRegion region: FanMakerSDKBeaconRegion) {
-     
+
         NSLog("Enter FM region: \(region.uuid)")
         DispatchQueue.main.async {
-            self.beaconRegions = self.beaconRegions.map {
+            self.updateSelectedBeaconRegionArray(manager, regions: self.selectedBeaconRegionArray(manager).map {
                 var beaconRegion = $0
                 if beaconRegion.id == region.id {
                     beaconRegion.within = true
                 }
                 return beaconRegion
-            }
+            })
         }
     }
-    
+
     func beaconsManager(_ manager: FanMakerSDKBeaconsManager, didExitRegion region: FanMakerSDKBeaconRegion) {
-     
+
         NSLog("Exit FM region: \(region.uuid)")
         DispatchQueue.main.async {
-            self.beaconRegions = self.beaconRegions.map {
+            self.updateSelectedBeaconRegionArray(manager, regions: self.selectedBeaconRegionArray(manager).map {
                 var beaconRegion = $0
                 if beaconRegion.id == region.id {
                     beaconRegion.within = false
                 }
                 return beaconRegion
-            }
+            })
         }
     }
-    
+
     func beaconsManager(_ manager: FanMakerSDKBeaconsManager, didUpdateBeaconRangeActionsHistory queue: [FanMakerSDKBeaconRangeAction]) {
 
         NSLog("the queue was updated to \(queue.count) items")
         DispatchQueue.main.async {
-            self.beaconRegions = self.beaconRegions.map { region in
+            self.updateSelectedBeaconRegionArray(manager, regions: self.selectedBeaconRegionArray(manager).map { region in
                 let actions : [BeaconAction] = queue.filter({ action in
                     return action.uuid.uppercased() == region.uuid.uppercased()
                 }).enumerated().map({ index, action in
                     return BeaconAction(from: action, id: index)
                 })
-                
+
                 var newRegion = region
                 newRegion.actions = actions
                 return newRegion
-            }
+            })
         }
     }
-    
+
     func beaconsManager(_ manager: FanMakerSDKBeaconsManager, didUpdateBeaconRangeActionsSendList queue: [FanMakerSDKBeaconRangeAction]) {
-        
+
     }
-    
+
     func beaconsManager(_ manager: FanMakerSDKBeaconsManager, didFailWithError error: FanMakerSDKBeaconsError) {
         switch(error) {
             case .userSessionNotFound:

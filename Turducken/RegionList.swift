@@ -12,22 +12,32 @@ import FanMaker
 struct RegionList : View {
     @StateObject var fanmaker = FanMakerViewModel()
     @State var showFanMakerUI = false
+    @State var showFanMakerUI2 = false
 
     var body: some View {
         NavigationView {
             VStack {
-                if fanmaker.beaconRegions.isEmpty {
+                if fanmaker.beaconRegions1.isEmpty && fanmaker.beaconRegions2.isEmpty {
                     Text("No regions are being monitored")
                     Button("Fetch Regions", action: { fanmaker.updateRegions() })
                 } else {
-                    List(fanmaker.beaconRegions) { region in
+                    List(fanmaker.beaconRegions1) { region in
                         NavigationLink<RegionRow, BeaconList> {
                             BeaconList(beacons: region.beacons(), region: region)
                         } label: {
                             RegionRow(data: region)
                         }
                     }
-                    .navigationTitle("Monitored Regions")
+                    .navigationTitle("Monitored Regions 1")
+
+                    List(fanmaker.beaconRegions2) { region in
+                        NavigationLink<RegionRow, BeaconList> {
+                            BeaconList(beacons: region.beacons(), region: region)
+                        } label: {
+                            RegionRow(data: region)
+                        }
+                    }
+                    .navigationTitle("Monitored Regions 2")
                 }
 
                 Button(action: {
@@ -38,7 +48,10 @@ struct RegionList : View {
                     //     "nfl_oidc": "1234-nfo-oidc",
                     //     "stephen_test": "123-is-a-test"
                     // ]
-                    // FanMakerSDK.setFanMakerIdentifiers(dictionary: fanmakerIdentifiers)
+                    // let fanmakerIdentifiers: [String: Any] = [
+                    //     "airship_channel_id": "7870978-airship-a0af9d780a9s7f07f"
+                    // ]
+                    // AppDelegate.fanmakerSDK1.setFanMakerIdentifiers(dictionary: fanmakerIdentifiers)
                     // ------------------------------------------------------------------------------------------ <<<
 
                     // ------------------------------------------------------------------------------------------ >>>
@@ -64,7 +77,7 @@ struct RegionList : View {
                     //     // Unwrap the optional before passing it to FanMakerSDK
                     //     if let unwrappedGifImage = gifImage {
                     //         // If all has gone well, we can now pass the animated image to FanMakerSDK
-                    //         FanMakerSDK.setLoadingForegroundImage(unwrappedGifImage)
+                    //         AppDelegate.fanmakerSDK1.setLoadingForegroundImage(unwrappedGifImage)
                     //     }
                     // }
                     // ------------------------------------------------------------------------------------------ <<<
@@ -72,16 +85,27 @@ struct RegionList : View {
                     // ------------------------------------------------------------------------------------------ >>>
                     // Set Custom FanMaker Member ID
                     // ------------------------------------------------------------------------------------------
-                    FanMakerSDK.setMemberID("Custom MemberID")
+                    AppDelegate.fanmakerSDK1.setMemberID("Custom MemberID")
                     // ------------------------------------------------------------------------------------------ <<<
 
                     self.showFanMakerUI.toggle()
                 }) {
                     Text("Show FanMaker UI")
                 }
+
+                Button(action: {
+                    AppDelegate.fanmakerSDK2.setMemberID("Custom MemberID 2")
+                    // ------------------------------------------------------------------------------------------ <<<
+
+                    self.showFanMakerUI2.toggle()
+                }) {
+                    Text("Show FanMaker UI2")
+                }.sheet(isPresented: $showFanMakerUI2) {
+                    FanMakerSDKWebViewControllerRepresentable(sdk: AppDelegate.fanmakerSDK2)
+                }
             }.onOpenURL { url in
-                if FanMakerSDK.canHandleUrl(url) {
-                    if FanMakerSDK.handleUrl(url) {
+                if AppDelegate.fanmakerSDK1.canHandleUrl(url) {
+                    if AppDelegate.fanmakerSDK1.handleUrl(url) {
                         print("FanMaker handled the URL, opening the FanMaker UI")
                         self.isShowingFanMakerUI = true
                     } else {
@@ -92,7 +116,7 @@ struct RegionList : View {
                     print("FanMaker cannot handle the URL")
                 }
             }.sheet(isPresented: $showFanMakerUI) {
-                FanMakerSDKWebViewControllerRepresentable()
+                FanMakerSDKWebViewControllerRepresentable(sdk: AppDelegate.fanmakerSDK1)
             }
         }
     }
