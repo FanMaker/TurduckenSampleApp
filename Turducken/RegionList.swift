@@ -78,12 +78,23 @@ struct RegionList : View {
                     self.showFanMakerUI.toggle()
                 }) {
                     Text("Show FanMaker UI")
-                }.sheet(isPresented: $showFanMakerUI) {
-                    FanMakerSDKWebViewControllerRepresentable()
                 }
+            }.onOpenURL { url in
+                if FanMakerSDK.canHandleUrl(url) {
+                    if FanMakerSDK.handleUrl(url) {
+                        print("FanMaker handled the URL, opening the FanMaker UI")
+                        self.isShowingFanMakerUI = true
+                    } else {
+                        print("FanMaker failed to handle the URL")
+                    }
+
+                } else {
+                    print("FanMaker cannot handle the URL")
+                }
+            }.sheet(isPresented: $showFanMakerUI) {
+                FanMakerSDKWebViewControllerRepresentable()
             }
         }
-
     }
 }
 
