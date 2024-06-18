@@ -1,14 +1,15 @@
 {
+  "originHash" : "dd148fcdad69b8838aae2f56303bcb62244e21fb706e71a0b6132ff2bbef0756",
   "pins" : [
     {
       "identity" : "turducken",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/FanMaker/turducken.git",
+      "location" : "git@github.com:FanMaker/Turducken.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "2c0641dd988f75f99f3b77d5c3d71116eeb935f7"
+        "revision" : "574fe16730019bbcc97c2c5f5ad823edc207926e",
+        "version" : "2.0.0"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
