@@ -52,22 +52,22 @@ class FanMakerViewModel : NSObject, ObservableObject, FanMakerSDKBeaconsManagerD
     @Published var beaconRegions2 : [Region]
 
     private let beaconsManager1 : FanMakerSDKBeaconsManager
-    // private let beaconsManager2 : FanMakerSDKBeaconsManager
+    private let beaconsManager2 : FanMakerSDKBeaconsManager
 
     override init() {
         beaconsManager1 = FanMakerSDKBeaconsManager(sdk: AppDelegate.fanmakerSDK1)
-        // beaconsManager2 = FanMakerSDKBeaconsManager(sdk: AppDelegate.fanmakerSDK2)
+        beaconsManager2 = FanMakerSDKBeaconsManager(sdk: AppDelegate.fanmakerSDK2)
         beaconRegions1 = []
         beaconRegions2 = []
 
         super.init()
         beaconsManager1.delegate = self
-        // beaconsManager2.delegate = self
+        beaconsManager2.delegate = self
     }
 
     func updateRegions() {
         beaconsManager1.requestAuthorization()
-        // beaconsManager2.requestAuthorization()
+        beaconsManager2.requestAuthorization()
     }
 
     func beaconsManager(_ manager: FanMakerSDKBeaconsManager, didChangeAuthorization status: FanMakerSDKBeaconsAuthorizationStatus) {
@@ -88,21 +88,18 @@ class FanMakerViewModel : NSObject, ObservableObject, FanMakerSDKBeaconsManagerD
     }
 
     func selectedBeaconRegionArray(_ manager: FanMakerSDKBeaconsManager) -> [Region] {
-        return beaconRegions1
-        // return manager == beaconsManager1 ? beaconRegions1 : beaconRegions2
+        return manager == beaconsManager1 ? beaconRegions1 : beaconRegions2
     }
 
     func updateSelectedBeaconRegionArray(_ manager: FanMakerSDKBeaconsManager, regions: [Region]) {
-        beaconRegions1 = regions
-        // if manager == beaconsManager1 {
-        //     beaconRegions1 = regions
-        // } else {
-        //     beaconRegions2 = regions
-        // }
+        if manager == beaconsManager1 {
+            beaconRegions1 = regions
+        } else {
+            beaconRegions2 = regions
+        }
     }
 
     func beaconsManager(_ manager: FanMakerSDKBeaconsManager, didReceiveBeaconRegions regions: [FanMakerSDKBeaconRegion]) {
-
         manager.startScanning(regions)
         DispatchQueue.main.async {
             self.updateSelectedBeaconRegionArray(manager, regions: self.selectedBeaconRegionArray(manager).map {

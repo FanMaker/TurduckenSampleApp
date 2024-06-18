@@ -17,9 +17,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         fanmakerSDK1.initialize(apiKey: "")
         AppDelegate.fanmakerSDK1 = fanmakerSDK1
 
+        AppDelegate.fanmakerSDK1.enableLocationTracking()
+
         let fanmakerSDK2 = FanMakerSDK()
         fanmakerSDK2.initialize(apiKey: "")
         AppDelegate.fanmakerSDK2 = fanmakerSDK2
+
+        AppDelegate.fanmakerSDK2.enableLocationTracking()
 
         return true
     }

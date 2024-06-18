@@ -37,6 +37,7 @@
 		03D08B3D264EF13D0002CE16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03D08B40264EF13D0002CE16 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		03D08B42264EF13D0002CE16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDC2C1902C0FB6E20050F685 /* Turducken.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Turducken.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +75,7 @@
 		03D08B38264EF13C0002CE16 /* Turducken */ = {
 			isa = PBXGroup;
 			children = (
+				CDC2C1902C0FB6E20050F685 /* Turducken.entitlements */,
 				034040EB26557D4000CB1C55 /* AppDelegate.swift */,
 				03D08B39264EF13C0002CE16 /* TurduckenApp.swift */,
 				03D08B3D264EF13D0002CE16 /* Assets.xcassets */,
@@ -325,6 +327,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Turducken/Turducken.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Turducken/Preview Content\"";
 				DEVELOPMENT_TEAM = QU5G2LXECR;
@@ -347,6 +350,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Turducken/Turducken.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Turducken/Preview Content\"";
 				DEVELOPMENT_TEAM = QU5G2LXECR;

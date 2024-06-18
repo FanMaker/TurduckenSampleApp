@@ -105,11 +105,23 @@ struct RegionList : View {
                 }
             }.onOpenURL { url in
                 if AppDelegate.fanmakerSDK1.canHandleUrl(url) {
-                    if AppDelegate.fanmakerSDK1.handleUrl(url) {
-                        print("FanMaker handled the URL, opening the FanMaker UI")
-                        self.isShowingFanMakerUI = true
-                    } else {
-                        print("FanMaker failed to handle the URL")
+                    let url_components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                    if url_components?.scheme == "turducken" {
+                        if AppDelegate.fanmakerSDK1.handleUrl(url) {
+                            print("FanMaker handled the URL, opening the FanMaker UI")
+                            self.showFanMakerUI = true
+                        } else {
+                            print("FanMaker failed to handle the URL")
+                        }
+                    }
+
+                    if url_components?.scheme == "turducken2" {
+                        if AppDelegate.fanmakerSDK2.handleUrl(url) {
+                            print("FanMaker2 handled the URL, opening the FanMaker2 UI")
+                            self.showFanMakerUI2 = true
+                        } else {
+                            print("FanMaker2 failed to handle the URL")
+                        }
                     }
 
                 } else {
