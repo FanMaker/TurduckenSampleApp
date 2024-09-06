@@ -17,29 +17,32 @@ struct RegionList : View {
     var body: some View {
         NavigationView {
             VStack {
-                if fanmaker.beaconRegions1.isEmpty && fanmaker.beaconRegions2.isEmpty {
-                    Text("No regions are being monitored")
-                    Button("Fetch Regions", action: { fanmaker.updateRegions() })
-                } else {
-                    List(fanmaker.beaconRegions1) { region in
-                        NavigationLink<RegionRow, BeaconList> {
-                            BeaconList(beacons: region.beacons(), region: region)
-                        } label: {
-                            RegionRow(data: region)
-                        }
-                    }
-                    .navigationTitle("Monitored Regions 1")
-
-                    List(fanmaker.beaconRegions2) { region in
-                        NavigationLink<RegionRow, BeaconList> {
-                            BeaconList(beacons: region.beacons(), region: region)
-                        } label: {
-                            RegionRow(data: region)
-                        }
-                    }
-                    .navigationTitle("Monitored Regions 2")
-                }
-
+               // ------------------------------------------------------------------------------------------ >>>
+               // Show Monitored Beacon Regions
+               // ------------------------------------------------------------------------------------------
+               // if fanmaker.beaconRegions1.isEmpty && fanmaker.beaconRegions2.isEmpty {
+               //     Text("No regions are being monitored")
+               //     Button("Fetch Regions", action: { fanmaker.updateRegions() })
+               // } else {
+               //     List(fanmaker.beaconRegions1) { region in
+               //        NavigationLink<RegionRow, BeaconList> {
+               //             BeaconList(beacons: region.beacons(), region: region)
+               //         } label: {
+               //             RegionRow(data: region)
+               //         }
+               //     }
+               //     .navigationTitle("Monitored Regions 1")
+               //
+               //     List(fanmaker.beaconRegions2) { region in
+               //         NavigationLink<RegionRow, BeaconList> {
+               //             BeaconList(beacons: region.beacons(), region: region)
+               //         } label: {
+               //             RegionRow(data: region)
+               //         }
+               //     }
+               //     .navigationTitle("Monitored Regions 2")
+               // }
+               // ------------------------------------------------------------------------------------------ <<<
                 Button(action: {
                     // ------------------------------------------------------------------------------------------ >>>
                     // Set Custom FanMaker Identifiers
@@ -85,24 +88,74 @@ struct RegionList : View {
                     // ------------------------------------------------------------------------------------------ >>>
                     // Set Custom FanMaker Member ID
                     // ------------------------------------------------------------------------------------------
-                    AppDelegate.fanmakerSDK1.setMemberID("Custom MemberID")
+                    // AppDelegate.fanmakerSDK1.setMemberID("Custom MemberID")
                     // ------------------------------------------------------------------------------------------ <<<
+
+                    let fanmakerParams: [String: Any] = [ "hide_menu": false ]
+                    AppDelegate.fanmakerSDK1.fanMakerParameters(dictionary: fanmakerParams)
 
                     self.showFanMakerUI.toggle()
                 }) {
                     Text("Show FanMaker UI")
                 }
+                Spacer()
 
+                // ------------------------------------------------------------------------------------------ >>>
+                // FanMaker UI2 button
+                // ------------------------------------------------------------------------------------------
+                // Button(action: {
+                //     AppDelegate.fanmakerSDK2.setMemberID("Custom MemberID 2")
+                //
+                //
+                //     self.showFanMakerUI2.toggle()
+                // }) {
+                //     Text("Show FanMaker UI2")
+                // }.sheet(isPresented: $showFanMakerUI2) {
+                //     FanMakerSDKWebViewControllerRepresentable(sdk: AppDelegate.fanmakerSDK2)
+                // }
+                // ------------------------------------------------------------------------------------------ <<<
+                // ------------------------------------------------------------------------------------------ >>>
+                // Open Digital Concessions Stand
+                // ------------------------------------------------------------------------------------------
                 Button(action: {
-                    AppDelegate.fanmakerSDK2.setMemberID("Custom MemberID 2")
-                    // ------------------------------------------------------------------------------------------ <<<
-
-                    self.showFanMakerUI2.toggle()
+                     let fanmakerParams: [String: Any] = [ "hide_menu": true ]
+                     AppDelegate.fanmakerSDK1.fanMakerParameters(dictionary: fanmakerParams)
+                        
+                    let url = URL(string: "turducken://FanMaker/digital-concessions-stand")
+                    if AppDelegate.fanmakerSDK1.handleUrl(url!) { self.showFanMakerUI.toggle() }
                 }) {
-                    Text("Show FanMaker UI2")
-                }.sheet(isPresented: $showFanMakerUI2) {
-                    FanMakerSDKWebViewControllerRepresentable(sdk: AppDelegate.fanmakerSDK2)
+                    Text("Digital Concessions Stand")
                 }
+                Spacer()
+                // ------------------------------------------------------------------------------------------ <<<
+                // ------------------------------------------------------------------------------------------ >>>
+                // Open Experiences
+                // ------------------------------------------------------------------------------------------
+                Button(action: {
+                    let fanmakerParams: [String: Any] = [ "hide_menu": true ]
+                    AppDelegate.fanmakerSDK1.fanMakerParameters(dictionary: fanmakerParams)
+
+                    let url = URL(string: "turducken://FanMaker/digital-concessions-stand/category/experiences")
+                    if AppDelegate.fanmakerSDK1.handleUrl(url!) { self.showFanMakerUI.toggle() }
+                }) {
+                    Text("Experiences")
+                }
+                Spacer()
+                // ------------------------------------------------------------------------------------------ <<<
+                // ------------------------------------------------------------------------------------------ >>>
+                // Open Chat
+                // ------------------------------------------------------------------------------------------
+                Button(action: {
+                    let fanmakerParams: [String: Any] = [ "hide_menu": true ]
+                    AppDelegate.fanmakerSDK1.fanMakerParameters(dictionary: fanmakerParams)
+
+                    let url = URL(string: "turducken://FanMaker/talk")
+                    if AppDelegate.fanmakerSDK1.handleUrl(url!) { self.showFanMakerUI.toggle() }
+                }) {
+                    Text("Chat")
+                }
+                Spacer()
+                // ------------------------------------------------------------------------------------------ <<<
             }.onOpenURL { url in
                 if AppDelegate.fanmakerSDK1.canHandleUrl(url) {
                     let url_components = URLComponents(url: url, resolvingAgainstBaseURL: false)
@@ -130,7 +183,7 @@ struct RegionList : View {
             }.sheet(isPresented: $showFanMakerUI) {
                 FanMakerSDKWebViewControllerRepresentable(sdk: AppDelegate.fanmakerSDK1)
             }
-        }
+        }.environment(\.colorScheme, .dark)
     }
 }
 

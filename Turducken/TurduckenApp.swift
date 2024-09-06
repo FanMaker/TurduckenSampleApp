@@ -10,10 +10,11 @@ import SwiftUI
 @main
 struct TurduckenApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
+
     var body: some Scene {
         WindowGroup {
             RegionList()
+            //UiExamples()
         }
     }
 }

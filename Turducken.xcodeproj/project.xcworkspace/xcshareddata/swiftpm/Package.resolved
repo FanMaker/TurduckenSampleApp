@@ -1,0 +1,24 @@
+{
+  "originHash" : "4bf9e9653b23d2d6742906d39bd7d83062e251b16608df52ceec477d63a68970",
+  "pins" : [
+    {
+      "identity" : "slidingtabview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/QuynhNguyen/SlidingTabView",
+      "state" : {
+        "revision" : "b0f0662977418824d50546b2850a523dcd793bb0",
+        "version" : "1.0.2"
+      }
+    },
+    {
+      "identity" : "turducken",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:FanMaker/Turducken.git",
+      "state" : {
+        "revision" : "e44eb3003f368bae10fbadc9fe4a8ae91cbb2856",
+        "version" : "2.0.1"
+      }
+    }
+  ],
+  "version" : 3
+}

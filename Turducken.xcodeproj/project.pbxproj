@@ -19,9 +19,15 @@
 		03D08B3E264EF13D0002CE16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03D08B3D264EF13D0002CE16 /* Assets.xcassets */; };
 		03D08B41264EF13D0002CE16 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03D08B40264EF13D0002CE16 /* Preview Assets.xcassets */; };
 		CD15F79C2BE4466E0094797C /* FanMaker in Frameworks */ = {isa = PBXBuildFile; productRef = CD15F79B2BE4466E0094797C /* FanMaker */; };
+		CD26AB602C88DFAA002C3114 /* FanMaker in Frameworks */ = {isa = PBXBuildFile; productRef = CD26AB5F2C88DFAA002C3114 /* FanMaker */; };
 		CD3CFDC32BE2E04500AF65FC /* FanMaker in Frameworks */ = {isa = PBXBuildFile; productRef = CD3CFDC22BE2E04500AF65FC /* FanMaker */; };
+		CD4AF8222C8B96C600535A39 /* FanMaker in Frameworks */ = {isa = PBXBuildFile; productRef = CD4AF8212C8B96C600535A39 /* FanMaker */; };
 		CD9360F82BE046300085A1E0 /* FanMaker in Frameworks */ = {isa = PBXBuildFile; productRef = CD9360F72BE046300085A1E0 /* FanMaker */; };
-		CD97D99F2C222875006DF6BC /* FanMaker in Frameworks */ = {isa = PBXBuildFile; productRef = CD97D99E2C222875006DF6BC /* FanMaker */; };
+		CDE6ABF02C76802F001151EE /* FanMaker in Frameworks */ = {isa = PBXBuildFile; productRef = CDE6ABEF2C76802F001151EE /* FanMaker */; };
+		CDE6ABF22C7687F8001151EE /* UiExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE6ABF12C7687F8001151EE /* UiExamples.swift */; };
+		CDE6ABF52C768D66001151EE /* SlidingTabView in Frameworks */ = {isa = PBXBuildFile; productRef = CDE6ABF42C768D66001151EE /* SlidingTabView */; };
+		CDE6ABF72C768FFC001151EE /* HalfPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE6ABF62C768FFC001151EE /* HalfPage.swift */; };
+		CDE6ABF92C77BE26001151EE /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE6ABF82C77BE26001151EE /* WebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +45,9 @@
 		03D08B40264EF13D0002CE16 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		03D08B42264EF13D0002CE16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDC2C1902C0FB6E20050F685 /* Turducken.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Turducken.entitlements; sourceTree = "<group>"; };
+		CDE6ABF12C7687F8001151EE /* UiExamples.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UiExamples.swift; sourceTree = "<group>"; };
+		CDE6ABF62C768FFC001151EE /* HalfPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfPage.swift; sourceTree = "<group>"; };
+		CDE6ABF82C77BE26001151EE /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,7 +56,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD15F79C2BE4466E0094797C /* FanMaker in Frameworks */,
-				CD97D99F2C222875006DF6BC /* FanMaker in Frameworks */,
+				CD4AF8222C8B96C600535A39 /* FanMaker in Frameworks */,
+				CDE6ABF52C768D66001151EE /* SlidingTabView in Frameworks */,
+				CDE6ABF02C76802F001151EE /* FanMaker in Frameworks */,
+				CD26AB602C88DFAA002C3114 /* FanMaker in Frameworks */,
 				CD9360F82BE046300085A1E0 /* FanMaker in Frameworks */,
 				CD3CFDC32BE2E04500AF65FC /* FanMaker in Frameworks */,
 			);
@@ -86,6 +98,9 @@
 				03C6E315265423C100040097 /* web.html */,
 				030C8CAF28B52F8500D83F6E /* RegionRow.swift */,
 				039D122628610FAF0080B2DC /* RegionList.swift */,
+				CDE6ABF82C77BE26001151EE /* WebView.swift */,
+				CDE6ABF12C7687F8001151EE /* UiExamples.swift */,
+				CDE6ABF62C768FFC001151EE /* HalfPage.swift */,
 				039D1228286114A80080B2DC /* BeaconRow.swift */,
 				039D122A286117BC0080B2DC /* BeaconList.swift */,
 				039D122C286119DC0080B2DC /* BeaconActions.swift */,
@@ -136,7 +151,10 @@
 				CD9360F72BE046300085A1E0 /* FanMaker */,
 				CD3CFDC22BE2E04500AF65FC /* FanMaker */,
 				CD15F79B2BE4466E0094797C /* FanMaker */,
-				CD97D99E2C222875006DF6BC /* FanMaker */,
+				CDE6ABEF2C76802F001151EE /* FanMaker */,
+				CDE6ABF42C768D66001151EE /* SlidingTabView */,
+				CD26AB5F2C88DFAA002C3114 /* FanMaker */,
+				CD4AF8212C8B96C600535A39 /* FanMaker */,
 			);
 			productName = Turducken;
 			productReference = 03D08B36264EF13C0002CE16 /* Turducken.app */;
@@ -166,7 +184,8 @@
 			);
 			mainGroup = 03D08B2D264EF13C0002CE16;
 			packageReferences = (
-				CD97D99D2C222875006DF6BC /* XCRemoteSwiftPackageReference "Turducken" */,
+				CDE6ABF32C768D66001151EE /* XCRemoteSwiftPackageReference "SlidingTabView" */,
+				CD4AF8202C8B96C600535A39 /* XCRemoteSwiftPackageReference "Turducken" */,
 			);
 			productRefGroup = 03D08B37264EF13C0002CE16 /* Products */;
 			projectDirPath = "";
@@ -196,13 +215,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				039D122B286117BC0080B2DC /* BeaconList.swift in Sources */,
+				CDE6ABF22C7687F8001151EE /* UiExamples.swift in Sources */,
 				034040EC26557D4000CB1C55 /* AppDelegate.swift in Sources */,
 				039D1229286114A80080B2DC /* BeaconRow.swift in Sources */,
 				03D08B3A264EF13C0002CE16 /* TurduckenApp.swift in Sources */,
 				039D122F286121EC0080B2DC /* FanMakerViewModel.swift in Sources */,
 				039D122728610FAF0080B2DC /* RegionList.swift in Sources */,
+				CDE6ABF72C768FFC001151EE /* HalfPage.swift in Sources */,
 				030C8CB028B52F8500D83F6E /* RegionRow.swift in Sources */,
 				039D122D286119DC0080B2DC /* BeaconActions.swift in Sources */,
+				CDE6ABF92C77BE26001151EE /* WebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,12 +417,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CD97D99D2C222875006DF6BC /* XCRemoteSwiftPackageReference "Turducken" */ = {
+		CD4AF8202C8B96C600535A39 /* XCRemoteSwiftPackageReference "Turducken" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:FanMaker/Turducken.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				minimumVersion = 2.0.1;
+			};
+		};
+		CDE6ABF32C768D66001151EE /* XCRemoteSwiftPackageReference "SlidingTabView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/QuynhNguyen/SlidingTabView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -410,18 +440,31 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = FanMaker;
 		};
+		CD26AB5F2C88DFAA002C3114 /* FanMaker */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FanMaker;
+		};
 		CD3CFDC22BE2E04500AF65FC /* FanMaker */ = {
 			isa = XCSwiftPackageProductDependency;
+			productName = FanMaker;
+		};
+		CD4AF8212C8B96C600535A39 /* FanMaker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD4AF8202C8B96C600535A39 /* XCRemoteSwiftPackageReference "Turducken" */;
 			productName = FanMaker;
 		};
 		CD9360F72BE046300085A1E0 /* FanMaker */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FanMaker;
 		};
-		CD97D99E2C222875006DF6BC /* FanMaker */ = {
+		CDE6ABEF2C76802F001151EE /* FanMaker */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CD97D99D2C222875006DF6BC /* XCRemoteSwiftPackageReference "Turducken" */;
 			productName = FanMaker;
+		};
+		CDE6ABF42C768D66001151EE /* SlidingTabView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CDE6ABF32C768D66001151EE /* XCRemoteSwiftPackageReference "SlidingTabView" */;
+			productName = SlidingTabView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
