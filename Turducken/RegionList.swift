@@ -88,7 +88,8 @@ struct RegionList : View {
                     AppDelegate.fanmakerSDK1.setMemberID("Custom MemberID")
                     // ------------------------------------------------------------------------------------------ <<<
 
-                    self.showFanMakerUI.toggle()
+                    let url = URL(string: "https://FanMaker/")
+                    if AppDelegate.fanmakerSDK1.handleUrl(url!) { self.showFanMakerUI.toggle() }
                 }) {
                     Text("Show FanMaker UI")
                 }
@@ -129,6 +130,32 @@ struct RegionList : View {
                 }
             }.sheet(isPresented: $showFanMakerUI) {
                 FanMakerSDKWebViewControllerRepresentable(sdk: AppDelegate.fanmakerSDK1)
+            }.onReceive(NotificationCenter.default.publisher(for: FanMakerSDK.closeSdk, object: AppDelegate.fanmakerSDK1)) { notification in
+                if let params = notification.userInfo?["params"] as? [String: Any] {
+                    print("SDK closed with params: \(params)")
+                }
+                showFanMakerUI = false
+            }.onReceive(NotificationCenter.default.publisher(for: FanMakerSDK.closeSdk, object: AppDelegate.fanmakerSDK2)) { notification in
+                if let params = notification.userInfo?["params"] as? [String: Any] {
+                    print("SDK2 closed with params: \(params)")
+                }
+                showFanMakerUI2 = false
+            }.onReceive(NotificationCenter.default.publisher(for: FanMakerSDK.actionNotificationName("customAction"), object: AppDelegate.fanmakerSDK1)) { notification in
+                // Access the action name
+                if let action = notification.userInfo?["action"] as? String {
+                    print("Action triggered: \(action)")  // Prints: "Action triggered: reload"
+                }
+
+                // Access the parameters
+                if let params = notification.userInfo?["params"] as? [String: Any] {
+                    print("Parameters: \(params)")  // Prints: ["force": true, "clearCache": false, ...]
+
+                    // Use specific parameters
+                    if let success = params["success"] as? Bool {
+                        // Handle success parameter
+                        print("Success: \(success)")
+                    }
+                }
             }
         }
     }

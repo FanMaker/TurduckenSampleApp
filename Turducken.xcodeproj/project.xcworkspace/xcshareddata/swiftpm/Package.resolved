@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "git@github.com:FanMaker/Turducken.git",
       "state" : {
-        "revision" : "574fe16730019bbcc97c2c5f5ad823edc207926e",
-        "version" : "2.0.0"
+        "revision" : "00177ba7c571152b321fa3158cf00eebe82e6c8c",
+        "version" : "3.0.0"
       }
     }
   ],
